@@ -1,0 +1,13 @@
+# 退稅手帖 is a Vite PWA with hash routing (location.hash), so the CDN
+# does not need a rewrite to index.html. Static sites are free and do not
+# take a compute plan (https://render.com/docs/blueprint-spec).
+services:
+  - type: web
+    name: tuishui-note
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      # Build command installs with npm ci; skip Render's automatic install.
+      - key: SKIP_INSTALL_DEPS
+        value: "true"
